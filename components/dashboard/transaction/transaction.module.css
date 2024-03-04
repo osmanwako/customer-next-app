@@ -1,0 +1,62 @@
+.container {
+  padding: 10px 20px;
+  background-color: var(--bg-color-soft);
+  border-radius: 10px;
+}
+
+.title {
+  margin-bottom: 10px;
+  color: var(--text-color-soft);
+  font-size: 17px;
+  font-weight: 200;
+}
+
+.table {
+  width: 100%;
+}
+
+.table thead {
+  background-color: rgba(45, 55, 74, 0.8);
+}
+
+.table tr:hover {
+  background-color: rgba(45, 55, 74, 0.3);
+  cursor: pointer;
+}
+
+.table td {
+  padding: 7px;
+  text-align: left;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.userimage {
+  object-fit: cover;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+.status {
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 14px;
+  color: #fff;
+}
+
+.pending {
+  background-color: #f7cb7375;
+}
+
+.done {
+  background-color: #afd6ee75;
+}
+
+.cancelled {
+  background-color: #f7737375;
+}
