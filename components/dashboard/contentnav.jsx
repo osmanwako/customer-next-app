@@ -1,23 +1,23 @@
 'use client';
 import { usePathname } from "next/navigation";
-import style from "./contentnav.module.css";
+import "./contentnav.css";
 import { MdNotifications,MdOutlineChat, MdPublic, MdSearch } from "react-icons/md";
 export default function Headernav() {
     const pathname = usePathname().split('/').pop();
     return (
-        <div className={style.container}>
-            <div className={style.title}>
+        <div className="container">
+            <div className="title">
                 {pathname}
             </div>
-            <div className={style.menu}>
-                <div className={style.search}>
-                    <MdSearch />
-                    <input type="text" placeholder="Search..." className={style.input} />
+            <div className="menu">
+                <div className="search">
+                    <MdSearch size={20}/>
+                    <input type="text" placeholder="Search..." className="input" />
                 </div>
-                <div className={style.icons}>
-                    <MdOutlineChat size={20}/>
-                    <MdNotifications size={20} />
-                    <MdPublic size={20} />
+                <div className="icons">
+                    <MdOutlineChat size={22}/>
+                    <MdNotifications size={22} />
+                    <MdPublic size={22} />
                 </div>
             </div>
         </div>

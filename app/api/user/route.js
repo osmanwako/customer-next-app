@@ -14,9 +14,8 @@ export async function GET() {
 export async function POST(request) {
   try {
     const params = await request.json();
-    const { name, email } = params;
     const user = await prisma.user.create({
-      data: { name, email },
+      data: {...params },
     });
 
     return NextResponse.json({
@@ -41,53 +40,57 @@ export async function POST(request) {
 }
 
 export async function PATCH(request) {
-    try {
-        const params = await request.json();
-        const { name, email } = params;
-        const id = parseInt(params.id, 10);
+  try {
+    const params = await request.json();
+    const { name, email } = params;
+    const id = parseInt(params.id, 10);
 
-        if (isNaN(id)) {
-          return NextResponse.json({
-            status: 404,
-            message: "Invalid or missing user ID",
-        });
-        }
-
-        const user = await prisma.user.findUnique({
-            where: {
-                id,
-            },
-        });
-
-        if (!user) {
-            return NextResponse.json({
-                status: 404,
-                message: "User either does not exist or was recently deleted.",
-            });
-        }
-
-        await prisma.user.update({
-            where: {
-                id: id,
-            },
-            data: {
-                name,
-                email,
-            },
-        });
-
-        return NextResponse.json({ message: "User updated successfully." ,user, status: 403 });
-    } catch (error) {
-        const errorMessage = error.message || "Internal Server Error";
-
-        return NextResponse.json({
-            status: 500,
-            errorMessage,
-            message: "An unexpected error occurred while processing your request. Please try again later.",
-        });
+    if (isNaN(id)) {
+      return NextResponse.json({
+        status: 404,
+        message: "Invalid or missing user ID",
+      });
     }
-}
 
+    const user = await prisma.user.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    if (!user) {
+      return NextResponse.json({
+        status: 404,
+        message: "User either does not exist or was recently deleted.",
+      });
+    }
+
+    await prisma.user.update({
+      where: {
+        id: id,
+      },
+      data: {
+        name,
+        email,
+      },
+    });
+
+    return NextResponse.json({
+      message: "User updated successfully.",
+      user,
+      status: 403,
+    });
+  } catch (error) {
+    const errorMessage = error.message || "Internal Server Error";
+
+    return NextResponse.json({
+      status: 500,
+      errorMessage,
+      message:
+        "An unexpected error occurred while processing your request. Please try again later.",
+    });
+  }
+}
 
 export async function DELETE(request) {
   try {

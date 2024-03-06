@@ -1,6 +1,6 @@
 import style from './menunav.module.css';
 import Image from "next/image";
-import { MdAnalytics, MdAttachMoney, MdConstruction, MdDashboard, MdHelpCenter, MdLogout, MdOutline10K, MdOutlineSettings, MdPeople, MdShoppingBag, MdSupervisedUserCircle, MdWork } from 'react-icons/md';
+import { MdAnalytics, MdAttachMoney,MdCardTravel,MdDashboard, MdDisplaySettings, MdHelpCenter, MdLogout, MdOutline10K, MdOutlineSettings, MdPeople, MdShoppingBag, MdWork } from 'react-icons/md';
 import MenuLink from './menulink';
 const categories = [
     {
@@ -10,10 +10,17 @@ const categories = [
                 title: 'Dashboard',
                 path: '/dashboard',
                 icon: <MdDashboard />,
-            }, {
+            }, 
+            {
                 title: 'User',
                 path: '/dashboard/user',
-                icon: <MdSupervisedUserCircle />,
+                icon:<MdDisplaySettings />,
+            },
+            {
+                title: 'Customer',
+                path: '/dashboard/customer',
+                icon: <MdCardTravel />,
+
             },
             {
                 title: 'Product',

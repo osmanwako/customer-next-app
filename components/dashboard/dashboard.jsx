@@ -4,7 +4,6 @@ import style from "./dashboard.module.css";
 import Card from "./card/card";
 import Transaction from "./transaction/transaction";
 import Chart from "./chart/chart";
-import RightSide from "./rightside/rightside";
 
 export default function Dashboard() {
     const pathname = usePathname().split('/').pop();
