@@ -1,40 +1,43 @@
-import React from 'react';
+"use client"
+import { MdSearch } from "react-icons/md";
+import "./customers.css";
 import Link from "next/link";
-import Customer from './customer';
+import Customer from "./customer";
 
-const Customers = (props) => {
-  const {customers} = props;
+export default function Customers({customers}) {
 
-  return (
-    <div className="mx-auto mt-2 p-4 border rounded shadow">
-      <div className="col-span-2 mb-4 flex justify-between items-center">
-          <h2 className="text-2xl font-bold mb-4">Customer List</h2>
-          <Link href="/customer/create" className="text-blue-500 hover:underline">
-            Add Customer
-          </Link>
+    return (
+        <div className="customer-container">
+            <div className="customer-search">
+                <div className="search-input">
+                    <MdSearch size={20} />
+                    <input type="text" className="customer-input" name="search" placeholder="customer search..." id="customer-search-id" />
+                </div>
+                <div className="search-button">
+                    <Link href="/dashboard/add/customer">
+                    <button className="add-button">
+                        Add New
+                    </button>
+                    </Link>
+                </div>
+            </div>
+            <table className="customer-table">
+                <thead>
+                    <tr>
+                    <th>First Name</th>
+                    <th>Middle Name</th>
+                    <th>Last Name</th>
+                    <th>Phone</th>
+                    <th>Gender</th>
+                    <th>Action</th>
+                    </tr>
+                </thead>
+                {customers.map((customer)=>(
+                   <Customer key={customer.id} customer={customer} /> 
+                ))}
+               
+            </table>
         </div>
+    );
 
-      <table className="w-full border-collapse border border-gray-400">
-        <thead>
-          <tr>
-            <th className="p-2 border border-gray-400">First Name</th>
-            <th className="p-2 border border-gray-400">Middle Name</th>
-            <th className="p-2 border border-gray-400">Last Name</th>
-            <th className="p-2 border border-gray-400">Phone</th>
-            <th className="p-2 border border-gray-400">Birthdate</th>
-            <th className="p-2 border border-gray-400">Gender</th>
-            <th className="p-2 border border-gray-400">Published</th>
-            <th className="p-2 border border-gray-400">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {customers.map((customer) => (
-            <Customer customer={customer} key={customer.id} />
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-};
-
-export default Customers;
+}

@@ -8,19 +8,20 @@ datasource db {
 }
 
 model product {
-  id        Int      @id @default(autoincrement())
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-  name     String   @db.VarChar(255)
-  category   String?
-  description      String?
-  price            Decimal   
-  quantity         Int
-  measurementUnit  String    
-  image     String? 
-  published Boolean  @default(false)
-  author    user     @relation(fields: [author_id], references: [id])
-  author_id  Int
+  id          Int      @id @default(autoincrement())
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  name        String   @db.VarChar(255)
+  category    String?
+  description String?
+  unit_price  Decimal
+  quantity    Int
+  total_price Decimal
+  unit        String
+  image       String?
+  published   Boolean  @default(false)
+  author      user     @relation(fields: [author_id], references: [id])
+  author_id   Int
 }
 
 enum Gender {
@@ -41,31 +42,30 @@ enum Status {
 }
 
 model user {
-  id      Int      @id @default(autoincrement())
-  username   String   @unique
-  firstname    String?
-  midname     String   @db.VarChar(255)
-  lastname     String   @db.VarChar(255)
-  phone     String   @db.VarChar(25) @unique
-  birthdate DateTime
-  gender   Gender
-  role      Role      @default(User)
-  status    Status    @default(Disabled)
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  id         Int       @id @default(autoincrement())
+  username   String    @unique
+  firstname  String?
+  midname    String    @db.VarChar(255)
+  lastname   String    @db.VarChar(255)
+  phone      String    @unique @db.VarChar(25)
+  birthdate  DateTime
+  gender     Gender
+  role       Role      @default(User)
+  status     Status    @default(Disabled)
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
   products   product[]
 }
 
 model customer {
-  id        Int      @id @default(autoincrement())
-  firstname String   @db.VarChar(25)
-  midname String  @db.VarChar(25)
-  lastname  String   @db.VarChar(25)
-  phone     String   @db.VarChar(25) @unique
-  birthdate DateTime
-  gender   Gender
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  id         Int         @id @default(autoincrement())
+  firstname  String      @db.VarChar(25)
+  midname    String      @db.VarChar(25)
+  lastname   String      @db.VarChar(25)
+  phone      String      @unique @db.VarChar(25)
+  birthdate  DateTime
+  gender     Gender
+  created_at DateTime    @default(now())
+  updated_at DateTime    @updatedAt
 }
-
 

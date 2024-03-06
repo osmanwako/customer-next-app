@@ -14,26 +14,8 @@ export async function GET() {
 export async function POST(request) {
   try {
     const params = await request.json();
-    let {
-      firstname,
-      middlename,
-      lastname,
-      phone,
-      birthdate,
-      gender,
-      published,
-    } = params;
-    birthdate=`${birthdate}T00:00:00.000Z`;
     const customer = await prisma.customer.create({
-      data: {
-        firstname,
-        middlename,
-        lastname,
-        phone,
-        birthdate,
-        gender,
-        published,
-      },
+      data: {...params},
     });
 
     return NextResponse.json({

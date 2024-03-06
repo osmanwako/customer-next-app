@@ -70,7 +70,6 @@ export default function AddUser() {
 }
 
 const createUsers = async (user) => {
-    console.log(user);
     let message = '';
     try {
         const response = await fetch(`/api/user`, {

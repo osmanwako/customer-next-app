@@ -1,26 +1,20 @@
-export default function Customer(prop){
-    const {customer}=prop;
-    return (
-        <tr>
-              <td className="p-2 border border-gray-400">{customer.firstname}</td>
-              <td className="p-2 border border-gray-400">{customer.middlename}</td>
-              <td className="p-2 border border-gray-400">{customer.lastname}</td>
-              <td className="p-2 border border-gray-400">{customer.phone}</td>
-              <td className="p-2 border border-gray-400">{customer.birthdate}</td>
-              <td className="p-2 border border-gray-400">{customer.gender}</td>
-              <td className="p-2 border border-gray-400">{customer.published ? 'Yes' : 'No'}</td>
-              <td className="p-2 border border-gray-400">
-                <button
-                  className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-700 mr-2"
-                >
-                  Edit
-                </button>
-                <button
-                  className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700"
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-    );
-};
+"use client"
+import Link from "next/link";
+
+export default function customer({customer}) {
+return (
+    <tbody>
+    <tr>
+    <td>{customer.firstname}</td>
+    <td>{customer.midname}</td>
+    <td>{customer.lastname}</td>
+    <td>{customer.phone}</td>
+    <td>{customer.gender}</td>
+    <td>
+    <Link href="/customer" className="td-link link-view">View</Link>
+        <Link href="/customer" className="td-link link-edit">Edit</Link>
+    </td>
+    </tr>
+</tbody>
+);
+}
