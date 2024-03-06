@@ -15,3 +15,23 @@ export const getUsers = async () => {
       return [];
     }
   };
+
+  export const createUsers = async (user) => {
+    let message='';
+    try{
+    const response = await fetch(`${process.env.API_BASE_URL}/user`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(user),
+    });
+
+    if (response.ok) {
+      const result = await response.json();
+      return result;
+    } 
+    return [];
+  } catch (error) {
+    message=`An error occurred ${error.message}`;
+  }
+  return [message];
+  };
